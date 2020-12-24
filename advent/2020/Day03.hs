@@ -7,7 +7,7 @@ import AOC
 
 mainA :: IO ()
 mainA = do
-  ls <- readFileText "Day03Input"
+  ls <- readFileTextLines "Day03Input"
   print $ foo ls 0 0 (3,1)
 
 foo :: [Text] -> Int -> Int -> (Int, Int) -> Int
@@ -23,6 +23,6 @@ foo ls x y (xv, yv) =  do
 
 mainB :: IO ()
 mainB = do
-  ls <- readFileText "Day03Input"
+  ls <- readFileTextLines "Day03Input"
   let vectors = [(1,1),(3,1),(5,1),(7,1),(1,2)]
   print . product $ (foo ls 0 0) <$> vectors

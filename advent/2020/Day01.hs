@@ -8,7 +8,7 @@ import AOC
 
 mainA :: IO ()
 mainA = do
-  ls <- readFileInt "Day01Input"
+  ls <- readFileIntLines "Day01Input"
   print . mconcat $ (findPair ls) <$> ls
 
 findPair :: [Int] -> Int -> [Int]
@@ -20,7 +20,7 @@ findPair ls a =
 
 mainB :: IO ()
 mainB = do
-  ls <- readFileInt "Day01Input"
+  ls <- readFileIntLines "Day01Input"
   print . mconcat $ (findValue ls) <$> ls
 
 findValue :: [Int] -> Int -> [Int]
@@ -45,5 +45,5 @@ checkIfValue vals =
 
 mainB2 :: IO ()
 mainB2 = do
-  ls <- readFileInt "Day01Input"
+  ls <- readFileIntLines "Day01Input"
   print . mconcat $ (findValue ls) <$> ls

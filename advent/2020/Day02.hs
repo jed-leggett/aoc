@@ -15,7 +15,7 @@ data Password =
 
 mainA :: IO ()
 mainA = do
-  ls <- readFileText "Day02Input"
+  ls <- readFileTextLines "Day02Input"
   let listOfBools = isPasswordValid <$> ((parselist parsePassword)) (unpack <$> ls)
   print . length $ filter (==True) $ listOfBools
 
@@ -37,7 +37,7 @@ isPasswordValid p = do
 
 mainB :: IO ()
 mainB = do
-  ls <- readFileText "Day02Input"
+  ls <- readFileTextLines "Day02Input"
   let listOfBools = isPasswordValid' <$> ((parselist parsePassword)) (unpack <$> ls)
   print . length $ filter (==True) $ listOfBools
 
