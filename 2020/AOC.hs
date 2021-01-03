@@ -1,3 +1,6 @@
+{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DeriveGeneric  #-}
+
 module AOC
 ( module Prelude
 , module AOC
@@ -5,10 +8,14 @@ module AOC
 , module Text.Parsec.Error
 ) where
 
+import Control.Arrow (left)
+import Data.Hashable (Hashable)
+import Data.List( elemIndex)
+import Data.Maybe (fromJust)
 import Data.Text(Text, unpack)
+import GHC.Generics (Generic)
 import Text.Parsec
 import Text.Parsec.Error
-import Control.Arrow (left)
 
 import qualified Data.Text    as Text
 import qualified Data.Text.IO as TextIO
@@ -58,3 +65,36 @@ replaceNth _ _ [] = []
 replaceNth n newVal (x:xs)
   | n == 0 = newVal:xs
   | otherwise = x:replaceNth (n-1) newVal xs
+
+safeIndex :: [a] -> Int -> Maybe a
+safeIndex ls i =
+  if i < 0 || i >= length ls
+    then Nothing
+    else Just $ ls !! i
+
+type Key = (Int, Int)
+type KeyRule = Key -> Key
+
+leftOf :: KeyRule
+leftOf (x,y) = (x-1,y)
+
+topLeftOf :: KeyRule
+topLeftOf (x,y) = (x-1,y+1)
+
+bottomLeftOf :: KeyRule
+bottomLeftOf (x,y) = (x-1,y-1)
+
+rightOf :: KeyRule
+rightOf (x,y) = (x+1,y)
+
+topRightOf :: KeyRule
+topRightOf (x,y) = (x+1,y+1)
+
+bottomRightOf :: KeyRule
+bottomRightOf (x,y) = (x+1,y-1)
+
+topOf :: KeyRule
+topOf (x,y) = (x,y+1)
+
+bottomOf :: KeyRule
+bottomOf (x,y) = (x,y-1)
