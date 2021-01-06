@@ -19,7 +19,6 @@ data Direction =
 
 data Instruction =
     Move Heading Int
-  | TurnLeft Int
   | ChangeHeading Direction Int
   | MoveForward Int
   deriving Show
